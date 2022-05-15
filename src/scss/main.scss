@@ -1,0 +1,24 @@
+@import './libs/_functions';
+@import './config/variables';
+@import './libs/_mixins';
+body {
+    margin: 0;
+}
+
+canvas {
+    display: block;
+}
+
+.nav {
+    position: fixed;    
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    a {
+        display: block;
+        height: 100vh;
+        width: 33.3%;
+    }
+}
