@@ -3,7 +3,11 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import imagesLoaded from 'imagesloaded';
 import FontFaceObserver from 'fontfaceobserver';
 // import gsap from 'gsap';
+import * as dat from 'dat.gui';
 import Scroll from './scroll';
+
+// import displacement from '../images/glitch.jpg';
+import displacement from '../images/disp.png';
 
 // Shaders
 import fragment from './shaders/fragment.glsl';
@@ -16,10 +20,14 @@ class Merge {
         this.imagesQuery = options.imagesQuery;
         this.currentScroll = 0;
         this.previousScroll = 0;
+        this.settings = null;
+
         this.material = new THREE.ShaderMaterial({
             uniforms: {
                 time: { value: 0 },
-                uImage: { value: 0 }
+                progress: { value: 0 },
+                uImage: { value: 0 },
+                uDisplacement: { value: new THREE.TextureLoader().load(displacement) }
             },
             side: THREE.DoubleSide,
             fragmentShader: fragment,
@@ -34,9 +42,6 @@ class Merge {
         this.height = this.dom.offsetHeight;
 
         // setup
-        this.loadingManager = new THREE.LoadingManager();
-        this.textureLoader = new THREE.TextureLoader(this.loadingManager);
-
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(70, this.width / this.height, 100, 2000);
         this.camera.position.z = 600;
@@ -80,6 +85,15 @@ class Merge {
             this.events();
             this.render();
         });
+        this.initSettings();
+    }
+
+    initSettings() {
+        this.settings = {
+            progress: 0
+        };
+        this.gui = new dat.GUI();
+        this.gui.add(this.settings, 'progress', 0, 1, 0.01);
     }
 
     updateImages() {
@@ -156,8 +170,10 @@ class Merge {
         this.previousScroll = this.currentScroll;
         this.currentScroll = this.scroll.scrollToRender;
 
-        console.log(this.currentScroll);
 
+        this.materials.forEach(m => {
+            m.uniforms.progress.value = this.settings.progress;
+        });
         // Optimizations
         if (Math.round(this.previousScroll) !== Math.round(this.currentScroll)) {
             this.setPositions();
