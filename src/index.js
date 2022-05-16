@@ -1,18 +1,23 @@
 'strict';
-import Sketch from './js/Sketch';
+import Merge from './js/Merge';
 
 import './scss/main.scss';
 
-import img0 from './assets/alexander-wende.jpg';
-import img1 from './assets/jezael-melgoza.jpg';
-import img2 from './assets/lucas-gouvea.jpg';
-import img3 from './assets/oleg-onchky.jpg';
+import './images/alexander-wende.jpg';
+import './images/beach.jpg';
+import './images/jezael-melgoza.jpg';
+import './images/legs.jpg';
+import './images/lucas-gouvea.jpg';
+import './images/ocean.jpg';
+import './images/oleg-onchky.jpg';
+import './images/photo.jpg';
 
 (function () {
     window.addEventListener('DOMContentLoaded', (e) => {
-        new Sketch({
-            dom: document.getElementById('container')
-        });
 
+        new Merge({
+            dom: document.getElementById('container'),
+            imagesQuery: 'img'
+        });
     });
 })();

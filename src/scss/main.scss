@@ -1,24 +1,15 @@
 @import './libs/_functions';
 @import './config/variables';
+@import './config/bootstrap-variables';
 @import './libs/_mixins';
-body {
-    margin: 0;
-}
+@import './config/global';
+@import "~bootstrap/scss/bootstrap";
+@import './config/typography';
+@import './ui/buttons';
 
-canvas {
-    display: block;
-}
 
-.nav {
-    position: fixed;    
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    a {
-        display: block;
-        height: 100vh;
-        width: 33.3%;
-    }
+footer,
+header {
+    padding: 40px;
+    text-align: center;
 }
