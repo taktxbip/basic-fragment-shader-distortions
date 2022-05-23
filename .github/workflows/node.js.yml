@@ -45,7 +45,7 @@ jobs:
 
     - name: Unzip artifacts
       run: |
-        unzip dist.zip -d dist/
+        unzip dist.zip -d basic-fragment-shader-distortions/
         ls
 
     - name: Install SSH Key
@@ -58,4 +58,4 @@ jobs:
       run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
     - name: Deploy with rsync
-      run: rsync -avz -R dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/admin/web/evdesign.ru/public_html/demos/basic-fragment-shader-distortions
+      run: rsync -avz -R basic-fragment-shader-distortions/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/admin/web/evdesign.ru/public_html/demos
