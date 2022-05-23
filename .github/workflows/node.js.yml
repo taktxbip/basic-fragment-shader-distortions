@@ -45,7 +45,7 @@ jobs:
 
     - name: Unzip artifacts
       run: |
-        unzip dist.zip -d ./unzip/
+        unzip dist.zip -d ./dist/
 
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2
@@ -57,8 +57,4 @@ jobs:
       run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
     - name: Deploy with rsync
-      run: |
-        ls
-        cd unzip 
-        ls
-        rsync -avz -R ./unzip/dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/admin/web/evdesign.ru/public_html/demos/basic-fragment-shader-distortions
+      run: rsync -avz -R dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/admin/web/evdesign.ru/public_html/demos/basic-fragment-shader-distortions
