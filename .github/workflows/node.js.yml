@@ -59,4 +59,5 @@ jobs:
     - name: Deploy with rsync
       run: |
         cd dist
-        rsync -avz -R ./* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/admin/web/evdesign.ru/public_html/demos/basic-fragment-shader-distortions
+        ls 
+        rsync -avz -R ./**/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/admin/web/evdesign.ru/public_html/demos/basic-fragment-shader-distortions
