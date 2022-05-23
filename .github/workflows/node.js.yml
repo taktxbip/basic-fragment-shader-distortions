@@ -46,6 +46,7 @@ jobs:
     - name: Unzip artifacts
       run: |
         unzip dist.zip -d ./
+        cd dist
         ls
 
     - name: Install SSH Key
