@@ -6,8 +6,9 @@ import FontFaceObserver from 'fontfaceobserver';
 import * as dat from 'dat.gui';
 import Scroll from './scroll';
 
-// import displacement from '../images/glitch.jpg';
-import displacement from '../images/disp.png';
+import displacement from '../images/glitch.jpg';
+// import displacement from '../images/disp.png';
+// import displacement from '../images/cyberpunk.jpg';
 
 // Shaders
 import fragment from './shaders/fragment.glsl';

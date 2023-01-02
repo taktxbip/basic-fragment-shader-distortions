@@ -4,18 +4,23 @@ uniform float progress;
 uniform sampler2D uDisplacement;
 
 void main() {
-    vec4 imageView =  texture2D(uDisplacement, vUv.yx);
+    vec4 displace =  texture2D(uDisplacement, vUv.yx);
 
-    vec2 newUV = vec2(
+    vec2 displaceUV = vec2(
         vUv.x,
         vUv.y
     );
 
-    newUV.y = mix(vUv.y, imageView.r, progress);
+    displaceUV.y = mix(vUv.y, displace.r - 0.2, progress);
 
-    vec4 res = texture2D(uImage, newUV);
+    vec4 res = texture2D(uImage, displaceUV);
 
-    // res.r = mix(res.r, imageView.r, progress);
+    res.r = texture2D(uImage, displaceUV + vec2(0.0, 1.0 * 0.05) * progress).r;
+    res.g = texture2D(uImage, displaceUV + vec2(0.0, 1.0 * 0.1) * progress).g;
+    res.b = texture2D(uImage, displaceUV + vec2(0.0, 1.0 * 0.2) * progress).b;
+    // vec4 res = texture2D(uDisplacement, vUv);
+
+    // res.r = mix(res.r, displace.r, progress);
     
     gl_FragColor = res;
 }
