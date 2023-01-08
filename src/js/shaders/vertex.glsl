@@ -1,6 +1,8 @@
 varying vec2 vUv;
+varying vec3 vPosition;
 uniform float time;
 uniform vec2 hover;
+uniform vec3 mouse;
 varying float vNoise;
  
 void main() {
@@ -8,5 +10,6 @@ void main() {
 
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4( newPosition, 1.0 );
 
+    vPosition = position;
     vUv = uv;
 } 

@@ -11,6 +11,7 @@ import './images/lucas-gouvea.jpg';
 import './images/ocean.jpg';
 import './images/oleg-onchky.jpg';
 import './images/photo.jpg';
+import './images/font.jpg';
 
 (function () {
     window.addEventListener('DOMContentLoaded', (e) => {
